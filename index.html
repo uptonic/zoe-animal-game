@@ -11,6 +11,24 @@
     $(document).ready(function() {
       $('.grid-item').fitText(0.15);
     });
+
+    // Click an animal
+    $(document).on('click', '.grid-item', function(event) {
+      animal     = $(this).html();
+      animalName = $(this).data('animal-name');
+
+      $('[data-role=animal-image]').html(animal);
+      $('[data-role=animal-name]').html(animalName);
+      $('.zoom').fadeIn('fast');
+      event.preventDefault();
+    });
+
+    // Click an animal
+    $(document).on('click', '.zoomed-item', function(event) {
+      $('[data-role=animal-image]').html('')
+      $('.zoom').fadeOut('fast');
+      event.preventDefault();
+    });
   </script>
 </head>
 
@@ -18,43 +36,54 @@
   <div class="grid">
     <div class="grid-content">
       <div class="grid-row">
-        <div class="grid-item">🐔</div>
-        <div class="grid-item">🐰</div>
-        <div class="grid-item">🐼</div>
-        <div class="grid-item">🐙</div>
-        <div class="grid-item">🐷</div>
+        <a href="#" class="grid-item" data-animal-name="chicken">🐔</a>
+        <a href="#" class="grid-item" data-animal-name="bunny">🐰</a>
+        <a href="#" class="grid-item" data-animal-name="panda">🐼</a>
+        <a href="#" class="grid-item" data-animal-name="octopus">🐙</a>
+        <a href="#" class="grid-item" data-animal-name="pig">🐷</a>
       </div>
 
       <div class="grid-row">
-        <div class="grid-item">🦁</div>
-        <div class="grid-item">🐮</div>
-        <div class="grid-item">🐭</div>
-        <div class="grid-item">🐶</div>
-        <div class="grid-item">🐱</div>
+        <a href="#" class="grid-item" data-animal-name="lion">🦁</a>
+        <a href="#" class="grid-item" data-animal-name="cow">🐮</a>
+        <a href="#" class="grid-item" data-animal-name="rat">🐭</a>
+        <a href="#" class="grid-item" data-animal-name="puppy">🐶</a>
+        <a href="#" class="grid-item" data-animal-name="kitty">🐱</a>
       </div>
 
       <div class="grid-row">
-        <div class="grid-item">🐹</div>
-        <div class="grid-item">🐨</div>
-        <div class="grid-item">🐵</div>
-        <div class="grid-item">🐿</div>
-        <div class="grid-item">🐯</div>
+        <a href="#" class="grid-item" data-animal-name="gerbil">🐹</a>
+        <a href="#" class="grid-item" data-animal-name="koala">🐨</a>
+        <a href="#" class="grid-item" data-animal-name="monkey">🐵</a>
+        <a href="#" class="grid-item" data-animal-name="squirrel">🐿</a>
+        <a href="#" class="grid-item" data-animal-name="tiger">🐯</a>
       </div>
 
       <div class="grid-row">
-        <div class="grid-item">🐺</div>
-        <div class="grid-item">🐴</div>
-        <div class="grid-item">🐢</div>
-        <div class="grid-item">🐟</div>
-        <div class="grid-item">🐛</div>
+        <a href="#" class="grid-item" data-animal-name="wolf">🐺</a>
+        <a href="#" class="grid-item" data-animal-name="horse">🐴</a>
+        <a href="#" class="grid-item" data-animal-name="turtle">🐢</a>
+        <a href="#" class="grid-item" data-animal-name="fish">🐟</a>
+        <a href="#" class="grid-item" data-animal-name="caterpillar">🐛</a>
       </div>
 
       <div class="grid-row">
-        <div class="grid-item">🐸</div>
-        <div class="grid-item">🐘</div>
-        <div class="grid-item">🐫</div>
-        <div class="grid-item">🐑</div>
-        <div class="grid-item">🦃</div>
+        <a href="#" class="grid-item" data-animal-name="frog">🐸</a>
+        <a href="#" class="grid-item" data-animal-name="elephant">🐘</a>
+        <a href="#" class="grid-item" data-animal-name="camel">🐫</a>
+        <a href="#" class="grid-item" data-animal-name="bighorn sheep">🐑</a>
+        <a href="#" class="grid-item" data-animal-name="turkey">🦃</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="zoom">
+    <div class="zoomed-row">
+      <div class="zoomed-item">
+        <div class="zoomed-item__animal" data-role="animal-image"></div>
+        <h1 class="zoomed-item__label">
+          Move like a <span data-role="animal-name"></span>!
+        </h1>
       </div>
     </div>
   </div>
