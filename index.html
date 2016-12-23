@@ -7,8 +7,11 @@
   <script type="text/javascript" src="javascript/jquery.fittext.js" ></script>
 
   <script type="text/javascript">
-    var isPlaying   = false; // Are we playing?
-    var animalCount = 0;
+    var isPlaying     = false;  // Are we playing?
+    var isAnimal      = false;  // Are we showing an animal?
+    var defaultTimer  = 1500;   // 1.5 seconds
+    var animalTimer   = 4500;   // 4.5 seconds
+    var animalCount   = 0;      // Will be used to count the animals
 
     // Keep emoji inside grid boxes
     $(document).ready(function() {
@@ -52,20 +55,45 @@
     // Main game playing logic
     var Game = {
       // Main game loop
-      play: function() {
-        this.pickRandomAnimal();
+      play: function(timer) {
+        var self = this;
+
+        this.interval = setInterval(function(){
+          if(isAnimal) {
+            self.resetAnimal();
+            self.resetTimer(defaultTimer);
+          } else {
+            self.pickRandomAnimal();
+            self.resetTimer(animalTimer);
+          }
+        }, timer);
+
         isPlaying = true;
       },
 
       // Stop playing
       pause: function() {
+        clearInterval(this.interval);
         isPlaying = false;
+      },
+
+      // Reset timer to a new value
+      resetTimer: function(timer){
+        this.pause();
+        this.play(timer);
       },
 
       // Picks a random animal
       pickRandomAnimal: function() {
         var random = (Math.floor(Math.random() * animalCount)) - 1;
         ($(".animal").get(random)).click();
+        isAnimal = true;
+      },
+
+      // Resets back to the grid
+      resetAnimal: function() {
+        $('.zoomed-item').click();
+        isAnimal = false;
       },
 
       // Handle start/stop clicks
@@ -76,7 +104,7 @@
           Clock.pause();
         } else {
           $(button).addClass('controls__button--playing').text('Pause');
-          this.play();
+          this.play(defaultTimer);
           Clock.resume();
         }
       }
