@@ -10,13 +10,40 @@ body {
   line-height: 1.5;
   margin: 0;
   color: white;
-  background-image: url("../images/grassy-hill.jpg");
+  background-image: url("../images/grassy-field.jpg");
   background-size: cover;
 }
 
 a {
   color: #fff;
   text-decoration: none;
+}
+
+.controls {
+  position: absolute;
+  top: 1rem;
+  left: 1rem;
+}
+
+.controls__button {
+  display: inline-block;
+  background-color: white;
+  color: green;
+  padding: 0.5rem 3rem;
+  text-decoration: none;
+  font-weight: bold;
+  border-radius: 0.6rem;
+}
+
+.controls__button--playing {
+  color: red;
+}
+
+.clock {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  font-size: 2.4rem;
 }
 
 .grid {
