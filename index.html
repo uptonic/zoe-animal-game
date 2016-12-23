@@ -7,15 +7,19 @@
   <script type="text/javascript" src="javascript/jquery.fittext.js" ></script>
 
   <script type="text/javascript">
-    var isPlaying = false;  // Are we playing?
+    var isPlaying   = false; // Are we playing?
+    var animalCount = 0;
 
     // Keep emoji inside grid boxes
     $(document).ready(function() {
-      $('.grid-item').fitText(0.15);
+      $('.animal').fitText(0.15);
+
+      // Count up the animals
+      animalCount = $('.animal').length;
     });
 
     // Click an animal
-    $(document).on('click', '.grid-item', function(event) {
+    $(document).on('click', '.animal', function(event) {
       animal     = $(this).html();
       animalName = $(this).data('animal-name');
 
@@ -49,12 +53,19 @@
     var Game = {
       // Main game loop
       play: function() {
+        this.pickRandomAnimal();
         isPlaying = true;
       },
 
       // Stop playing
       pause: function() {
         isPlaying = false;
+      },
+
+      // Picks a random animal
+      pickRandomAnimal: function() {
+        var random = (Math.floor(Math.random() * animalCount)) - 1;
+        ($(".animal").get(random)).click();
       },
 
       // Handle start/stop clicks
@@ -109,44 +120,44 @@
 
   <div class="grid">
     <div class="grid-content">
-      <div class="grid-row">
-        <a href="#" class="grid-item" data-animal-name="chicken">🐔</a>
-        <a href="#" class="grid-item" data-animal-name="bunny">🐰</a>
-        <a href="#" class="grid-item" data-animal-name="panda">🐼</a>
-        <a href="#" class="grid-item" data-animal-name="octopus">🐙</a>
-        <a href="#" class="grid-item" data-animal-name="pig">🐷</a>
+      <div class="animal-group">
+        <a href="#" class="animal" data-animal-name="chicken">🐔</a>
+        <a href="#" class="animal" data-animal-name="bunny">🐰</a>
+        <a href="#" class="animal" data-animal-name="panda">🐼</a>
+        <a href="#" class="animal" data-animal-name="octopus">🐙</a>
+        <a href="#" class="animal" data-animal-name="pig">🐷</a>
       </div>
 
-      <div class="grid-row">
-        <a href="#" class="grid-item" data-animal-name="lion">🦁</a>
-        <a href="#" class="grid-item" data-animal-name="cow">🐮</a>
-        <a href="#" class="grid-item" data-animal-name="rat">🐭</a>
-        <a href="#" class="grid-item" data-animal-name="puppy">🐶</a>
-        <a href="#" class="grid-item" data-animal-name="kitty">🐱</a>
+      <div class="animal-group">
+        <a href="#" class="animal" data-animal-name="lion">🦁</a>
+        <a href="#" class="animal" data-animal-name="cow">🐮</a>
+        <a href="#" class="animal" data-animal-name="rat">🐭</a>
+        <a href="#" class="animal" data-animal-name="puppy">🐶</a>
+        <a href="#" class="animal" data-animal-name="kitty">🐱</a>
       </div>
 
-      <div class="grid-row">
-        <a href="#" class="grid-item" data-animal-name="gerbil">🐹</a>
-        <a href="#" class="grid-item" data-animal-name="koala">🐨</a>
-        <a href="#" class="grid-item" data-animal-name="monkey">🐵</a>
-        <a href="#" class="grid-item" data-animal-name="squirrel">🐿</a>
-        <a href="#" class="grid-item" data-animal-name="tiger">🐯</a>
+      <div class="animal-group">
+        <a href="#" class="animal" data-animal-name="gerbil">🐹</a>
+        <a href="#" class="animal" data-animal-name="koala">🐨</a>
+        <a href="#" class="animal" data-animal-name="monkey">🐵</a>
+        <a href="#" class="animal" data-animal-name="squirrel">🐿</a>
+        <a href="#" class="animal" data-animal-name="tiger">🐯</a>
       </div>
 
-      <div class="grid-row">
-        <a href="#" class="grid-item" data-animal-name="wolf">🐺</a>
-        <a href="#" class="grid-item" data-animal-name="horse">🐴</a>
-        <a href="#" class="grid-item" data-animal-name="turtle">🐢</a>
-        <a href="#" class="grid-item" data-animal-name="fish">🐟</a>
-        <a href="#" class="grid-item" data-animal-name="caterpillar">🐛</a>
+      <div class="animal-group">
+        <a href="#" class="animal" data-animal-name="wolf">🐺</a>
+        <a href="#" class="animal" data-animal-name="horse">🐴</a>
+        <a href="#" class="animal" data-animal-name="turtle">🐢</a>
+        <a href="#" class="animal" data-animal-name="fish">🐟</a>
+        <a href="#" class="animal" data-animal-name="caterpillar">🐛</a>
       </div>
 
-      <div class="grid-row">
-        <a href="#" class="grid-item" data-animal-name="frog">🐸</a>
-        <a href="#" class="grid-item" data-animal-name="elephant">🐘</a>
-        <a href="#" class="grid-item" data-animal-name="camel">🐫</a>
-        <a href="#" class="grid-item" data-animal-name="bighorn sheep">🐑</a>
-        <a href="#" class="grid-item" data-animal-name="turkey">🦃</a>
+      <div class="animal-group">
+        <a href="#" class="animal" data-animal-name="frog">🐸</a>
+        <a href="#" class="animal" data-animal-name="elephant">🐘</a>
+        <a href="#" class="animal" data-animal-name="camel">🐫</a>
+        <a href="#" class="animal" data-animal-name="bighorn sheep">🐑</a>
+        <a href="#" class="animal" data-animal-name="turkey">🦃</a>
       </div>
     </div>
   </div>
